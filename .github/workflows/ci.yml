@@ -26,6 +26,12 @@ jobs:
       - name: Run pytest with Allure
         run: |
           pytest -v --alluredir=./reports/allure_raw
+      - name: Istall Allure
+        run: |
+          sudo apt-get update
+          sudp apt-get install -y wget
+          wget -q0- https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.1.tgz | tar -xz -C /tmp
+          sudo ln -s /tmp/allure-2.29.0/bin/allure /usr/local/bin/allure
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@v1
