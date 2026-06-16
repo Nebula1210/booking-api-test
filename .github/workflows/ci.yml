@@ -1,0 +1,46 @@
+name: Run API Tests
+
+on:
+  push:
+    branches:[main,master]
+  pull_request:
+    branches:[main,master]
+
+jobs:
+  test:
+    runs-on:ubuntu-latest
+  steps:
+    - name:Checkout code
+    - uses:actions/checkout@v2
+
+    - name:Set up Python
+    - uses:actions/setup-python@v5
+    - with:
+        python-version:'3.11'
+
+    - name:Install dependencies
+      - run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name:Run pytest with Allure
+      - run: |
+        pytest -v --alluredir=./reports/allure_raw
+     #使用第三方actions生成Allure报告
+    - name:Generate Allure Report
+      - uses:simple-elf/allure-report-action@v1
+      - with:
+            allure-results: './reports/allure_raw'
+            allure-report: './reports/allure_report'
+
+    - name:Upload Allure HTML Report    
+      - uses:actions/upload-artifact@v4
+      - with:
+        name: allure-html-report
+        path:./reports/allure_report
+        retention-days:7
+
+
+
+
+
