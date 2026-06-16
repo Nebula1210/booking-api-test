@@ -35,10 +35,8 @@ jobs:
           sudo ln -s /tmp/allure-2.29.0/bin/allure /usr/local/bin/allure
 
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1
-        with:
-          allure_results: './reports/allure_raw'
-          allure_report: './reports/allure_report'
+        run: |
+          allure generate ./reports/allure_raw -o ./reports/allure_report --clean
 
       - name: Upload Allure HTML Report
         uses: actions/upload-artifact@v4
