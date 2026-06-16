@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"测试创建新的预定记录","1656","创建新的预定","test_cases","2026-06-15","passed","2026-06-15","TestBooking","test_booking","",""
+"测试完全更新一个预定记录","613","使用PUT方法完全更新预定【需要认证】","test_cases","2026-06-15","passed","2026-06-15","TestBooking","test_booking","",""
+"测试删除一个预定","913","删除特定预定【需要认证】","test_cases","2026-06-15","passed","2026-06-15","TestBooking","test_booking","",""
+"先创建一个预定记录，然后根据ID查询","610","根据ID查询预定","test_cases","2026-06-15","passed","2026-06-15","TestBooking","test_booking","",""
