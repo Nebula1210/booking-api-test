@@ -29,10 +29,12 @@ jobs:
 
       - name: Install Allure
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget
-          wget -q0- https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.1.tgz | tar -xz -C /tmp
-          sudo ln -s /tmp/allure-2.29.0/bin/allure /usr/local/bin/allure
+          # 使用 curl 下载，并添加重试机制
+          for i in 1 2 3; do
+            curl -s -L -o /tmp/allure.tgz https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.tgz && break || sleep 3
+          done
+          tar xzf /tmp/allure.tgz -C /tmp
+          sudo mv /tmp/allure-2.29.0/bin/allure /usr/local/bin/
 
       - name: Generate Allure Report
         run: |
