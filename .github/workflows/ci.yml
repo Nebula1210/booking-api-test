@@ -26,7 +26,8 @@ jobs:
       - name: Run pytest with Allure
         run: |
           pytest -v --alluredir=./reports/allure_raw
-      - name: Istall Allure
+
+      - name: Install Allure
         run: |
           sudo apt-get update
           sudp apt-get install -y wget
